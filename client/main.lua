@@ -1,3 +1,4 @@
+QBCore = exports['qb-core']:GetCoreObject()
 local isLoggedIn = false 
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
@@ -5,7 +6,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     isLoggedIn = true
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
         local InRange = false
         local PlayerPed = PlayerPedId()
@@ -17,7 +18,7 @@ Citizen.CreateThread(function()
                 DrawMarker(2, 949.85, 35.39, 71.84, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.1, 255, 0, 0, 155, 0, 0, 0, 1, 0, 0, 0)
                 if dist < 1 then
                    
-                    DrawText3Ds(949.85, 35.39, 71.84, '~g~E~w~ - Sell chips')
+                    DrawText3Ds(949.85, 35.39, 71.84, '~g~[E]~w~ - Sell chips')
                     if IsControlJustPressed(0, 38) then
                         TriggerServerEvent('qb-casino:server:sell')
                     end
@@ -25,9 +26,9 @@ Citizen.CreateThread(function()
             end
 
         if not InRange then
-            Citizen.Wait(5000)
+            Wait(5000)
         end
-        Citizen.Wait(5)
+        Wait(5)
     end
 end)
 
